@@ -62,37 +62,5 @@ describe 'hashketball' do
         expect(game_hash.values.first.keys).to include(key)
       end
     end
-
-    it 'returns the correct player data for the :home team' do
-      home_players = [alan_anderson, reggie_evans, brook_lopez, mason_plumlee, jason_terry]
-      names = game_hash[:home][:players].map {|player| player[:player_name]}
-
-      home_players.each do |example_player_hash|
-        expect(names).to include(example_player_hash[:player_name]), "Expected the name #{example_player_hash[:player_name]}, but could not find. Check the spelling of player names. Capitalization matters!"
-
-        player_stats = game_hash[:home][:players].find do |player|
-          player[:player_name] == example_player_hash[:player_name]
-        end
-
-        expect(player_stats.keys).to match_array(example_player_hash.keys)
-        expect(player_stats.values).to match_array(example_player_hash.values)
-      end
-    end
-
-    it 'returns the correct player data for the :away team' do
-      away_players = [jeff_adrien, bismack_biyombo, desagna_diop, ben_gordon, kemba_walker]
-      names = game_hash[:away][:players].map {|player| player[:player_name]}
-
-      away_players.each do |example_player_hash|
-        expect(names).to include(example_player_hash[:player_name])
-
-        player_stats = game_hash[:away][:players].find do |player|
-          player[:player_name] == example_player_hash[:player_name]
-        end
-
-        expect(player_stats.keys).to match_array(example_player_hash.keys)
-        expect(player_stats.values).to match_array(example_player_hash.values)
-      end
-    end
   end
 end
